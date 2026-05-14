@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Background -->
+  <rect width="512" height="512" rx="96" fill="#161b22"/>
+  <!-- Robot face -->
+  <circle cx="256" cy="220" r="110" fill="#238636" opacity="0.15"/>
+  <!-- Antenna -->
+  <rect x="249" y="80" width="14" height="46" rx="7" fill="#8b949e"/>
+  <circle cx="256" cy="72" r="14" fill="#1f6feb"/>
+  <!-- Head -->
+  <rect x="148" y="128" width="216" height="180" rx="24" fill="#238636"/>
+  <!-- Eyes -->
+  <rect x="186" y="178" width="52" height="40" rx="10" fill="#0d1117"/>
+  <circle cx="212" cy="198" r="14" fill="#1f6feb"/>
+  <rect x="274" y="178" width="52" height="40" rx="10" fill="#0d1117"/>
+  <circle cx="300" cy="198" r="14" fill="#1f6feb"/>
+  <!-- Mouth -->
+  <rect x="196" y="256" width="120" height="22" rx="11" fill="#0d1117"/>
+  <rect x="206" y="261" width="24" height="12" rx="6" fill="#2ea043"/>
+  <rect x="244" y="261" width="24" height="12" rx="6" fill="#2ea043"/>
+  <rect x="282" y="261" width="24" height="12" rx="6" fill="#2ea043"/>
+  <!-- Body -->
+  <rect x="178" y="320" width="156" height="96" rx="18" fill="#161b22" stroke="#238636" stroke-width="4"/>
+  <!-- Copilot dot -->
+  <circle cx="256" cy="368" r="22" fill="#238636"/>
+  <circle cx="256" cy="368" r="12" fill="#0d1117"/>
+  <circle cx="256" cy="368" r="5" fill="#1f6feb"/>
+  <!-- BLE waves -->
+  <path d="M128 296 Q108 256 128 216" fill="none" stroke="#1f6feb" stroke-width="8" stroke-linecap="round" opacity="0.7"/>
+  <path d="M100 316 Q70 256 100 196" fill="none" stroke="#1f6feb" stroke-width="8" stroke-linecap="round" opacity="0.4"/>
+  <path d="M384 296 Q404 256 384 216" fill="none" stroke="#1f6feb" stroke-width="8" stroke-linecap="round" opacity="0.7"/>
+  <path d="M412 316 Q442 256 412 196" fill="none" stroke="#1f6feb" stroke-width="8" stroke-linecap="round" opacity="0.4"/>
+</svg>

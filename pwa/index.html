@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Copilot Desktop Buddy</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0d1117" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Copilot Buddy" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="apple-touch-icon" href="icons/icon.svg" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== Settings panel ===== -->
+  <div id="settings-panel" class="panel hidden">
+    <div class="panel-header">
+      <h2>Settings</h2>
+      <button id="settings-close" class="icon-btn" title="Close">✕</button>
+    </div>
+    <form id="settings-form">
+      <label>
+        GitHub Personal Access Token
+        <span class="hint">Needs <code>repo</code> and <code>workflow</code> scopes. Stored locally in your browser.</span>
+        <input type="password" id="s-token" autocomplete="off" placeholder="ghp_…" />
+      </label>
+      <label>
+        GitHub Owner / Organization
+        <span class="hint">Username or org name to scope repo search (optional)</span>
+        <input type="text" id="s-owner" placeholder="e.g. my-org or my-username" />
+      </label>
+      <label>
+        Poll Interval (ms)
+        <span class="hint">Minimum 5 000 ms</span>
+        <input type="number" id="s-interval" min="5000" step="1000" value="10000" />
+      </label>
+      <div class="form-actions">
+        <button type="submit" class="btn-primary">Save</button>
+        <button type="button" id="settings-cancel" class="btn-secondary">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- ===== BLE picker panel ===== -->
+  <div id="ble-picker" class="panel hidden">
+    <div class="panel-header">
+      <h2>Connect Hardware Device</h2>
+      <button id="ble-picker-close" class="icon-btn" title="Close">✕</button>
+    </div>
+    <p class="hint">
+      Click <strong>Choose device…</strong> to open Chrome's Bluetooth picker.
+      Select any device advertising the Nordic UART Service
+      (<code>6e400001-…</code>).
+    </p>
+    <div class="ble-picker-note">
+      <span>💡</span>
+      <span>Your device's name can be anything — the picker shows all devices
+      advertising NUS. A name starting with <code>Copilot</code> or <code>Claude</code>
+      makes it easy to identify.</span>
+    </div>
+    <div class="form-actions">
+      <button id="btn-connect-device" class="btn-primary">Choose device…</button>
+      <button id="btn-ble-disconnect" class="btn-secondary hidden">Disconnect</button>
+    </div>
+    <div id="ble-connect-error" class="error-banner hidden"></div>
+  </div>
+
+  <!-- ===== Main view ===== -->
+  <div id="main-view">
+    <header>
+      <div class="logo">
+        <span class="logo-icon">🤖</span>
+        <span class="logo-text">Copilot Desktop Buddy</span>
+      </div>
+      <div class="header-actions">
+        <button id="btn-open-settings" class="icon-btn" title="Settings">⚙️</button>
+        <button id="btn-open-ble" class="icon-btn" title="Connect hardware device">📡</button>
+      </div>
+    </header>
+
+    <!-- BLE status -->
+    <div id="ble-status-bar" class="status-bar disconnected">
+      <span class="indicator"></span>
+      <span id="ble-status-text">No hardware device connected</span>
+    </div>
+
+    <!-- Polling status -->
+    <div id="poll-status-bar" class="status-bar idle">
+      <span class="indicator"></span>
+      <span id="poll-status-text">Not polling — configure your GitHub token</span>
+      <button id="btn-toggle-poll" class="btn-small">Start</button>
+    </div>
+
+    <!-- Session summary cards -->
+    <section id="summary-section">
+      <div class="card">
+        <div class="card-value" id="val-total">–</div>
+        <div class="card-label">Total</div>
+      </div>
+      <div class="card running">
+        <div class="card-value" id="val-running">–</div>
+        <div class="card-label">Running</div>
+      </div>
+      <div class="card waiting">
+        <div class="card-value" id="val-waiting">–</div>
+        <div class="card-label">Waiting</div>
+      </div>
+    </section>
+
+    <!-- One-line message -->
+    <div id="msg-line" class="msg-line">–</div>
+
+    <!-- Permission prompt banner -->
+    <div id="prompt-banner" class="prompt-banner hidden">
+      <div class="prompt-title">⚠️ Permission required</div>
+      <div id="prompt-desc" class="prompt-desc"></div>
+      <div class="prompt-actions">
+        <button id="btn-approve" class="btn-approve">Approve (once)</button>
+        <button id="btn-deny" class="btn-deny">Deny</button>
+      </div>
+    </div>
+
+    <!-- Recent sessions -->
+    <section id="entries-section">
+      <h3>Recent Sessions</h3>
+      <ul id="entries-list">
+        <li class="placeholder">No sessions yet</li>
+      </ul>
+    </section>
+
+    <!-- Error -->
+    <div id="error-banner" class="error-banner hidden"></div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

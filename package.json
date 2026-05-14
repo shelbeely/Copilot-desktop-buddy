@@ -1,0 +1,49 @@
+{
+  "name": "copilot-desktop-buddy",
+  "version": "1.0.0",
+  "description": "Desktop BLE bridge for GitHub Copilot cloud agent sessions — mirrors the Claude Hardware Buddy protocol",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "lint": "eslint src"
+  },
+  "keywords": [
+    "copilot",
+    "ble",
+    "desktop",
+    "hardware-buddy"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@abandonware/noble": "^1.9.2-15",
+    "@octokit/rest": "^21.0.0",
+    "electron-store": "^10.0.0"
+  },
+  "devDependencies": {
+    "electron": "^40.0.0",
+    "electron-builder": "^26.8.1",
+    "eslint": "^9.0.0"
+  },
+  "overrides": {
+    "tar": "^7.5.15"
+  },
+  "build": {
+    "appId": "com.copilot.desktop-buddy",
+    "productName": "Copilot Desktop Buddy",
+    "files": [
+      "src/**/*",
+      "assets/**/*"
+    ],
+    "mac": {
+      "category": "public.app-category.developer-tools"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  }
+}

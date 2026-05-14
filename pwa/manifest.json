@@ -1,0 +1,21 @@
+{
+  "name": "Copilot Desktop Buddy",
+  "short_name": "Copilot Buddy",
+  "description": "BLE bridge for GitHub Copilot cloud agent sessions — Hardware Buddy protocol",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0d1117",
+  "theme_color": "#0d1117",
+  "orientation": "any",
+  "categories": ["developer", "utilities"],
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": []
+}
