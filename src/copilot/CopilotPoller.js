@@ -192,6 +192,9 @@ class CopilotPoller extends EventEmitter {
           repo,
           status,
           per_page: 20,
+          // GitHub Copilot coding agent runs are triggered by the
+          // copilot-swe-agent[bot] actor.  This is the only actor used by
+          // the GitHub-managed Copilot cloud agent feature (as of 2025).
           actor: 'copilot-swe-agent[bot]',
         });
         runs = res.data.workflow_runs;

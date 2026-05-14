@@ -182,6 +182,9 @@ export class CopilotPoller extends EventTarget {
         const data = await this._gh.get(`/repos/${owner}/${repo}/actions/runs`, {
           status,
           per_page: 20,
+          // GitHub Copilot coding agent runs are triggered by the
+          // copilot-swe-agent[bot] actor.  This is the only actor used by
+          // the GitHub-managed Copilot cloud agent feature (as of 2025).
           actor: 'copilot-swe-agent[bot]',
         });
         runs = data.workflow_runs;

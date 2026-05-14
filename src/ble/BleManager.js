@@ -150,8 +150,8 @@ class BleManager extends EventEmitter {
 
   _onDiscover(peripheral) {
     const name = peripheral.advertisement.localName || peripheral.id;
-    // Only show devices whose name starts with "Claude" or "Copilot" (or any
-    // device advertising NUS, since we already filtered by service UUID above)
+    // Accept any device advertising NUS (we already filtered by service UUID
+    // in startScanning, so all discovered peripherals are NUS devices)
     const entry = {
       id: peripheral.id,
       name,
